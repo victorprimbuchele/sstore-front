@@ -2,14 +2,25 @@
 module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        "extra-dark-blue": "#051346",
+        "dark-blue-sky": "#0F427C",
+      },
+      spacing: {
+        "200": "50rem",
+        "160": "45rem",
+        "120": "40rem",
+        "100": "30rem"
+      }
+    },
     fontFamily: {
-      'sans': ['ui-sans-serif', 'system-ui'],
-      'serif': ['ui-serif', 'Georgia'],
-      'mono': ['ui-monospace', 'SFMono-Regular'],
-      'brand': ['Cinzel'],
-      'body': ['Montserrat'],
-    }
+      sans: ["ui-sans-serif", "system-ui"],
+      serif: ["ui-serif", "Georgia"],
+      mono: ["ui-monospace", "SFMono-Regular"],
+      brand: ["Cinzel"],
+      body: ["Montserrat"],
+    },
   },
   plugins: [],
 };
