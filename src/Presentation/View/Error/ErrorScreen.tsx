@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { FullPageContainerContentCenter } from "../../../layouts/Container/FullPage/ContentCenter/FullPageContainerContentCenter";
+import { FullPageContainerContentCenter } from "../../components/layouts/Container/FullPage/ContentCenter/FullPageContainerContentCenter";
 
 export const ErrorScreen: React.FC = () => (
   <FullPageContainerContentCenter>

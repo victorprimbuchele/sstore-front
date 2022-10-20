@@ -1,9 +1,9 @@
 import { Box } from "@mui/material";
-import { DefaultLayout } from "../../../layouts/Default/DefaultLayout";
-import { SimpleToggleButton } from "../../../components/Button/Toggle/Simple/SimpleToggleButton";
+import { DefaultLayout } from "../../components/layouts/Default/DefaultLayout";
+import { SimpleToggleButton } from "../../components/Button/Toggle/Simple/SimpleToggleButton";
 import { ChevronRight } from "@mui/icons-material";
-import { CardCarousel } from "../../../components/Caroussel/Card/CardCarousel";
-import { DefaultCard } from "../../../components/Card/Default/DefaultCard";
+import { CardCarousel } from "../../components/Caroussel/Card/CardCarousel";
+import { DefaultCard } from "../../components/Card/Default/DefaultCard";
 import { useHomeController } from "../../Controller/Home/useHomeController";
 
 export const Home: React.FC = () => {
