@@ -1,9 +1,9 @@
 import { useState } from "react";
-import { DefaultNavbar } from "../../components/Navbar/Default/DefaultNavbar";
+import { DefaultNavbar } from "../../Navbar/Default/DefaultNavbar";
 import { DefaultLayoutProps } from "./DefaultLayout.types";
-import { SimpleToggleButton } from "../../components/Button/Toggle/Simple/SimpleToggleButton";
-import { DefaultMenu } from "../../components/Menu/Default/DefaultMenu";
-import { DefaultList } from "../../components/List/Default/DefaultList";
+import { SimpleToggleButton } from "../../Button/Toggle/Simple/SimpleToggleButton";
+import { DefaultMenu } from "../../Menu/Default/DefaultMenu";
+import { DefaultList } from "../../List/Default/DefaultList";
 import { useDefaultLayoutController } from "./useDefaultLayoutController";
 
 export const DefaultLayout: React.FC<DefaultLayoutProps> = ({

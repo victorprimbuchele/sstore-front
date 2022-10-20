@@ -46,6 +46,10 @@ export const useDefaultLayoutController = () => {
           title: "Cargueiros",
           route: "/produtos/?model=cargueiros",
         },
+        {
+          title: 'Todas as naves',
+          route: "/produtos"
+        }
       ],
     },
   ];
