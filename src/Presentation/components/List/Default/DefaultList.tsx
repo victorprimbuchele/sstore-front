@@ -24,12 +24,12 @@ export const DefaultList: React.FC<DefaultListProps> = ({ content }) => {
   }
 
   return (
-    <List>
+    <List key={`sc-key-list-container`} id={`sc-id-list-container`}>
       {content.map((item, itemIdx) => (
         <>
           <ListItemButton
-            key={`item-Btn-${itemIdx}`}
-            id={`item-Btn-${itemIdx}`}
+            key={`sc-key-item-Btn-${itemIdx}`}
+            id={`sc-id-item-Btn-${itemIdx}`}
             className="!py-1"
             onClick={
               item.nested
@@ -39,16 +39,22 @@ export const DefaultList: React.FC<DefaultListProps> = ({ content }) => {
             }
           >
             <ListItemText
-              key={`item-text-${itemIdx}`}
-              id={`item-text-${itemIdx}`}
+              key={`sc-key-item-text-${itemIdx}`}
+              id={`sc-id-item-text-${itemIdx}`}
               primary={item.title}
               disableTypography
             />
             {item.nested ? (
               whichOneIsOpen === item.title ? (
-                <ExpandLess />
+                <ExpandLess
+                  key={`sc-key-item-icon-show-${itemIdx}`}
+                  id={`sc-id-item-icon-show-${itemIdx}`}
+                />
               ) : (
-                <ExpandMore />
+                <ExpandMore
+                  key={`sc-key-item-icon-hide-${itemIdx}`}
+                  id={`sc-id-item-icon-hide-${itemIdx}`}
+                />
               )
             ) : null}
           </ListItemButton>
@@ -57,13 +63,20 @@ export const DefaultList: React.FC<DefaultListProps> = ({ content }) => {
               in={whichOneIsOpen === item.title}
               timeout="auto"
               unmountOnExit
+              key={`sc-key-item-collapse-${itemIdx}`}
+              id={`sc-id-item-collapse-${itemIdx}`}
             >
-              <List component="div" disablePadding>
+              <List
+                component="div"
+                disablePadding
+                key={`sc-key-subitem-list-container`}
+                id={`sc-id-subitem-list-container`}
+              >
                 {item.nested.map((subitem, subitemIdx) => (
                   <>
                     <ListItemButton
-                      key={`subitem-Btn-${subitemIdx}`}
-                      id={`subitem-Btn-${subitemIdx}`}
+                      key={`sc-key-subitem-Btn-${subitemIdx}`}
+                      id={`sc-id-subitem-Btn-${subitemIdx}`}
                       className="!py-1"
                       onClick={
                         subitem.nested
@@ -78,16 +91,22 @@ export const DefaultList: React.FC<DefaultListProps> = ({ content }) => {
                       sx={{ pl: 4 }}
                     >
                       <ListItemText
-                        key={`item-text-${subitemIdx}`}
-                        id={`item-text-${subitemIdx}`}
+                        key={`sc-key-subitem-text-${subitemIdx}`}
+                        id={`sc-id-subitem-text-${subitemIdx}`}
                         primary={subitem.title}
                         disableTypography
                       />
                       {subitem.nested ? (
                         whichSubitemIsOpen === subitem.title ? (
-                          <ExpandLess />
+                          <ExpandLess
+                            key={`sc-key-subitem-icon-show-${itemIdx}`}
+                            id={`sc-id-subitem-icon-show-${itemIdx}`}
+                          />
                         ) : (
-                          <ExpandMore />
+                          <ExpandMore
+                            key={`sc-key-subitem-icon-hide-${itemIdx}`}
+                            id={`sc-id-subitem-icon-hide-${itemIdx}`}
+                          />
                         )
                       ) : null}
                     </ListItemButton>
@@ -95,13 +114,20 @@ export const DefaultList: React.FC<DefaultListProps> = ({ content }) => {
                       in={whichSubitemIsOpen === subitem.title}
                       timeout="auto"
                       unmountOnExit
+                      key={`sc-key-subitem-collapse-${itemIdx}`}
+                      id={`sc-id-subitem-collapse-${itemIdx}`}
                     >
-                      <List component="div" disablePadding>
+                      <List
+                        component="div"
+                        disablePadding
+                        key={`sc-key-nestedSubitem-list-container`}
+                        id={`sc-id-nestedSubitem-list-container`}
+                      >
                         {subitem?.nested?.map(
                           (nestedSubitem, nestedSubitemIdx) => (
                             <ListItemButton
-                              key={`nestedSubitem-Btn-${nestedSubitemIdx}`}
-                              id={`nestedSubitem-Btn-${nestedSubitemIdx}`}
+                              key={`sc-key-nestedSubitem-Btn-${nestedSubitemIdx}`}
+                              id={`sc-id-nestedSubitem-Btn-${nestedSubitemIdx}`}
                               className="!py-1"
                               onClick={
                                 nestedSubitem.nested
@@ -116,17 +142,23 @@ export const DefaultList: React.FC<DefaultListProps> = ({ content }) => {
                               sx={{ pl: 6 }}
                             >
                               <ListItemText
-                                key={`item-text-${nestedSubitemIdx}`}
-                                id={`item-text-${nestedSubitemIdx}`}
+                                key={`sc-key-nestedSubitem-text-${nestedSubitemIdx}`}
+                                id={`sc-id-nestedSubitem-text-${nestedSubitemIdx}`}
                                 primary={nestedSubitem.title}
                                 disableTypography
                               />
                               {nestedSubitem.nested ? (
                                 whichNestedSubitemIsOpen ===
                                 nestedSubitem.title ? (
-                                  <ExpandLess />
+                                  <ExpandLess
+                                    key={`sc-key-nestedsubitem-icon-show-${itemIdx}`}
+                                    id={`sc-id-nestedsubitem-icon-show-${itemIdx}`}
+                                  />
                                 ) : (
-                                  <ExpandMore />
+                                  <ExpandMore
+                                    key={`sc-key-nestedsubitem-icon-hide-${itemIdx}`}
+                                    id={`sc-id-nestedsubitem-icon-hide-${itemIdx}`}
+                                  />
                                 )
                               ) : null}
                             </ListItemButton>

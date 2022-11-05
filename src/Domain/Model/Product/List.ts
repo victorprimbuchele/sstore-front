@@ -1,11 +1,18 @@
 export interface ListResponseData {
     current_page: number;
+    last_page: number;
+    per_page: number;
+    from: number;
+    to: number;
     data: ProductResponseData[];
   }
 
   export interface ListResponse {
-    products: ProductResponseData[];
+    starships: ProductResponseData[];
     currentPage: number;
+    lastPage: number;
+    perPage: number;
+    dataLengthThisPage: number;
   }
   
   export type ProductResponseData = {

@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { DefaultNavbar } from "../../Navbar/Default/DefaultNavbar";
 import { DefaultLayoutProps } from "./DefaultLayout.types";
 import { SimpleToggleButton } from "../../Button/Toggle/Simple/SimpleToggleButton";
@@ -13,11 +12,11 @@ export const DefaultLayout: React.FC<DefaultLayoutProps> = ({
 
   return (
     <div
-      className="h-screen  sm:h-full font-body w-screen sm:w-full"
+      className="h-screen sm:h-full font-body w-screen sm:w-full"
       id="sc-container-default-layout"
       key="sc-container-default-layout"
     >
-      <div className="fixed bg-white w-screen sm:w-full drop-shadow-md">
+      <div className="fixed bg-white w-screen sm:w-full drop-shadow-md z-50" id='container-nav-def-lay'>
         <DefaultNavbar
           menu={
             <SimpleToggleButton

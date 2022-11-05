@@ -1,53 +1,78 @@
 import { Card, CardActions, CardContent, CardMedia } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { SimpleToggleButton } from "../../Button/Toggle/Simple/SimpleToggleButton";
-import { CardContentPropType, DefaultCardProps } from "./DefaultCard.types";
+import { DefaultCardPropsSingleContent } from "./DefaultCard.types";
 
-export const DefaultCard = ({
-  cardContents,
+export const DefaultCard: React.FC<DefaultCardPropsSingleContent> = ({
+  cardContent,
   handleClick,
-}: DefaultCardProps) => {
+  className,
+  buttonName,
+  index,
+  isShowingMore,
+  handleShowMore,
+  textRef,
+  hasSeeMore,
+}: DefaultCardPropsSingleContent) => {
   const navigate = useNavigate();
 
   const handleNavigate = (route: string) => {
     navigate(route);
   };
 
-  const myCard = (cardContent: CardContentPropType, idx: number) => (
-    <div className='px-1.5 mb-7'>
-      <Card key={`sc-key-card-${idx}`} id={`sc-id-card-${idx}`}>
+  return (
+    <div
+      className={`px-1.5 mb-7 ${className?.containerClass}`}
+      key={`sc-container-key-card-${index}`}
+      id={`sc-container-id-card-${index}`}
+    >
+      <Card
+        key={`sc-key-card-${index}`}
+        id={`sc-id-card-${index}`}
+        className={`${className?.cardClass}`}
+      >
         <CardMedia
+          className={`${className?.imageClass}`}
           component="img"
           height={cardContent.imgHeight}
           image={cardContent.imgSrc}
           alt={cardContent.imgAlt}
         />
-        <CardContent>
-          <h3 className="font-brand text-base sm:text:lg">
+        <CardContent className={`${className?.cardContentClass}`}>
+          <h3 className="font-brand text-base sm:text:lg ">
             {cardContent.title}
           </h3>
-          <p className="mt-2 font-body text-xs sm:text:sm">
+          <p
+            ref={textRef}
+            className={`mt-2 font-body text-xs sm:text:sm ${
+              isShowingMore ? "max-h-18" : "truncate-overflow"
+            }`}
+            id={`sc-content-card-desc-${index}`}
+          >
             {cardContent.description}
           </p>
+          {hasSeeMore ? (
+            <SimpleToggleButton
+              buttonName={isShowingMore ? "Ver menos" : "Ver mais"}
+              onClick={handleShowMore ? () => handleShowMore(index, !isShowingMore) : () => {}}
+            />
+          ) : null}
+          <CardActions className="!p-0 !py-1">
+            <SimpleToggleButton
+              className={`${className?.buttonClass}`}
+              buttonName={buttonName}
+              onClick={
+                handleClick
+                  ? handleClick
+                  : () =>
+                      handleNavigate(
+                        cardContent.routeName ? cardContent.routeName : "/"
+                      )
+              }
+            />
+          </CardActions>
         </CardContent>
-        <CardActions>
-          <SimpleToggleButton
-            buttonName="Ver mais"
-            onClick={
-              handleClick
-                ? handleClick
-                : () =>
-                    handleNavigate(
-                      cardContent.routeName ? cardContent.routeName : "/"
-                    )
-            }
-          />
-
-          {/* <SimpleToggleButton buttonName="Comprar"  size="small"></SimpleToggleButton> */}
-        </CardActions>
       </Card>
     </div>
   );
-
-  return cardContents.map((cardContent, index) => myCard(cardContent, index));
 };

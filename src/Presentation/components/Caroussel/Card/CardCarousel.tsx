@@ -20,7 +20,6 @@ export const CardCarousel: React.FC<CardCarouselProps> = ({
     removeArrowOnDeviceType={["tablet", "mobile"]}
     dotListClass="custom-dot-list-style"
     itemClass="carousel-item-padding-40-px"
-    // partialVisible={true}
     centerMode={true}
   >
     {card}

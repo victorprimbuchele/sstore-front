@@ -1,3 +1,17 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+html {
+  --lh: 0.825rem;
+  line-height: var(--lh);
+}
+
+.truncate-overflow {
+  --max-lines: 3;
+  max-height: calc(var(--lh) * var(--max-lines));
+  overflow: hidden;
+  position: relative;
+  text-align: justify;
+  padding-right: 10px;
+}

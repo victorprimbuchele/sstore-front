@@ -1,4 +1,5 @@
-export type Product = {
+
+export type Starship = {
   mglt: string;
   cargo_capacity: string;
   consumables: string;
@@ -14,8 +15,8 @@ export type Product = {
   starship_class: string;
 };
 
-export interface ProductsProps {
-  products: Product[];
-  setProducts: (product: Product[]) => void;
-  addProduct: (product: Product) => void;
+export interface StarshipProps {
+  starships: Starship[];
+  setStarships: (product: Starship[]) => void;
+  addStarship: (product: Starship) => void;
 }
