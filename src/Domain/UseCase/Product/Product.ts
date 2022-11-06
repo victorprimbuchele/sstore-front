@@ -28,6 +28,10 @@ class Product implements LoadingProps {
   addProduct(productObj: ProductModel) {
     product.addProduct(productObj);
   }
+
+  resetProductData() {
+    product.resetProducts();
+  }
 }
 
 export default new Product();

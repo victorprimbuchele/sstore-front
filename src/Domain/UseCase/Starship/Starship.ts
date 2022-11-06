@@ -16,6 +16,7 @@ class Starship {
     this.perPage;
     this.dataLengthThisPage;
     this.fetchStarships;
+    this.reset;
   }
 
   get starships() {
@@ -48,6 +49,11 @@ class Starship {
 
   async fetchStarships() {
     await this.listStarships.setProductData(starships);
+  }
+
+  reset() {
+    starships.resetStarships();
+    this.listStarships.resetCurrentPage();
   }
 }
 

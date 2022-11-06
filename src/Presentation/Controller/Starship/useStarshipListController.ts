@@ -1,23 +1,39 @@
-import { useEffect, useState } from "react";
+import { useEffect, useLayoutEffect, useState } from "react";
 import { Starship } from "../../../Data/Starship/StarshipModel";
 import starshipViewModel from "../../../Domain/UseCase/Starship/Starship";
 import productViewModel from "../../../Domain/UseCase/Product/Product";
 import { ProductModel } from "../../../Data/Products/ProductModel";
+import { starshipBinder } from "./dataBinding";
 
 export const useStarshipListController = () => {
   const [isLoading, setIsLoading] = useState(true);
 
+  useLayoutEffect(() => {
+    console.log('renderizei')
+    starshipViewModel.reset();
+    productViewModel.resetProductData();
+  }, []);
+
   useEffect(() => {
-    if (!starshipViewModel.isLoading) {
+    if (
+      !starshipViewModel.isLoading &&
+      (starshipViewModel.currentPage !== 1 ||
+        productViewModel.products.length === 0)
+    ) {
       handlefetchStarships();
     }
   }, [starshipViewModel.currentPage]);
 
   useEffect(() => {
-    dataBindStarshipToProduct(
-      starshipViewModel.starships!,
-      productViewModel.addProduct
-    );
+    if (
+      starshipViewModel.currentPage !== 1 ||
+      productViewModel.products.length === 0
+    ) {
+      dataBindStarshipToProduct(
+        starshipViewModel.starships!,
+        productViewModel.addProduct
+      );
+    }
   }, [starshipViewModel.starships]);
 
   function dataBindStarshipToProduct(
@@ -28,42 +44,7 @@ export const useStarshipListController = () => {
 
     if (starships) {
       for (let i = 0; i < starships.length; i++) {
-        const binded = {
-          brand: starships[i].manufacturer,
-          model: starships[i].model,
-          name: starships[i].name,
-          price: starships[i].cost_in_credits,
-          qty: null,
-          description: {
-            cardDescription: `
-            A nave ${starships[i].model} possui:
-            
-            - Velocidade máxima: ${starships[i].mglt} megalight${
-              Number(starships[i]?.mglt) > 1 ? "s" : ""
-            } por hora
-
-            - Capacidade de até: ${starships[i].passengers} passageiros
-            
-            - Capacidade de carga: ${starships[i].cargo_capacity} toneladas
-            `,
-            fullDescription: `
-            A nave ${starships[i].model} possui:
-            - Velocidade máxima: ${starships[i].mglt} megalight${
-              Number(starships[i]?.mglt) > 1 ? "s" : ""
-            } por hora
-            - Capacidade de até: ${starships[i].passengers} passageiros
-            - Capacidade de carga: ${starships[i].cargo_capacity} toneladas
-            `,
-            minimunDescription: `
-            A nave ${starships[i].model} possui:
-            - Velocidade máxima: ${starships[i].mglt} megalight${
-              Number(starships[i]?.mglt) > 1 ? "s" : ""
-            } por hora
-            - Capacidade de até: ${starships[i].passengers} passageiros
-            - Capacidade de carga: ${starships[i].cargo_capacity} toneladas
-            `,
-          },
-        };
+        const binded = starshipBinder(starships[i]);
 
         setter({ ...binded });
       }
@@ -84,7 +65,8 @@ export const useStarshipListController = () => {
 
   return {
     products: productViewModel.products,
-    isLoading,
+    isLoading: isLoading,
+    isFetching: starshipViewModel.isLoading || isLoading,
     dataBindStarshipToProduct,
     dataLengthThisPage: starshipViewModel.dataLengthThisPage,
     page: starshipViewModel.currentPage,

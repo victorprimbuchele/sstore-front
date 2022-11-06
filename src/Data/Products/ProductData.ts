@@ -2,7 +2,7 @@ import { makeAutoObservable } from "mobx";
 import { ProductModel, ProductProps } from "./ProductModel";
 
 class Product implements ProductProps {
-  products = new Array<ProductModel>;
+  products = new Array<ProductModel>();
 
   constructor() {
     makeAutoObservable(this);
@@ -12,11 +12,15 @@ class Product implements ProductProps {
   }
 
   addProduct(product: ProductModel) {
-    this.products = [...this.products, product]
+    this.products = [...this.products, product];
   }
 
   setProducts(products: Array<ProductModel>) {
     this.products = products;
+  }
+
+  resetProducts() {
+    this.products = [];
   }
 }
 
