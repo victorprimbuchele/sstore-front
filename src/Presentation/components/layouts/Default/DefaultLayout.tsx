@@ -12,7 +12,7 @@ export const DefaultLayout: React.FC<DefaultLayoutProps> = ({
 
   return (
     <div
-      className="h-screen sm:h-full font-body w-screen sm:w-full"
+      className="h-screen sm:h-full font-body w-full sm:w-full"
       id="sc-container-default-layout"
       key="sc-container-default-layout"
     >

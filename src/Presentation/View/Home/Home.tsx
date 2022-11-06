@@ -7,12 +7,8 @@ import { useHomeController } from "../../Controller/Home/useHomeController";
 import { DefaulCardArr } from "../../components/Card/Default/DefaultCardArr";
 
 export const Home: React.FC = () => {
-  const {
-    handleNavigate,
-    cardContent,
-    responsiveCarouselCard,
-    slideImages,
-  } = useHomeController();
+  const { handleNavigate, cardContent, responsiveCarouselCard, slideImages } =
+    useHomeController();
 
   return (
     <DefaultLayout>
@@ -62,6 +58,8 @@ export const Home: React.FC = () => {
                 cardContentClass: null,
                 containerClass: null,
               },
+              index: 0,
+              buttonName: "",
             })}
             responsive={responsiveCarouselCard.responsive}
           />

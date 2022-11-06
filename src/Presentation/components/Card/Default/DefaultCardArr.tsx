@@ -8,11 +8,12 @@ export const DefaulCardArr = ({
 }: DefaultCardPropsMultiContent) => {
   return cardContents.map((cardContent, index) => (
     <DefaultCard
-    buttonName='ver mais'
+      buttonName="ver mais"
       cardContent={cardContent}
       index={index}
       className={className}
       handleClick={handleClick}
+      hasSeeMore={false}
     />
   ));
 };

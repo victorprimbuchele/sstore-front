@@ -10,6 +10,7 @@ class Startship implements StarshipProps {
     this.starships;
     this.addStarship;
     this.setStarships;
+    this.resetStarships;
   }
 
   addStarship(starships: Starship) {
@@ -18,6 +19,10 @@ class Startship implements StarshipProps {
 
   setStarships(starship: Array<Starship>) {
     this.starships = starship;
+  }
+
+  resetStarships() {
+    this.starships = [];
   }
 }
 

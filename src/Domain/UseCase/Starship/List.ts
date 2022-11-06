@@ -24,6 +24,7 @@ export class StarshipList implements PaginationProps, LoadingProps {
     this.setDataLengthThisPage;
     this.isLoading;
     this.setIsLoading;
+    this.resetCurrentPage;
   }
 
   setCurrentPage(currentPage: number) {
@@ -72,5 +73,9 @@ export class StarshipList implements PaginationProps, LoadingProps {
 
       return Promise.reject(error);
     }
+  }
+
+  resetCurrentPage() {
+    this.currentPage = 1;
   }
 }
