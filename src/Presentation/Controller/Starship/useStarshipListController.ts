@@ -9,7 +9,6 @@ export const useStarshipListController = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   useLayoutEffect(() => {
-    console.log('renderizei')
     starshipViewModel.reset();
     productViewModel.resetProductData();
   }, []);

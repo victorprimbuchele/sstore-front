@@ -35,6 +35,8 @@ export const DefaultList: React.FC<DefaultListProps> = ({ content }) => {
               item.nested
                 ? () =>
                     handleClick(item.title, whichOneIsOpen, setWhichOneIsOpen)
+                : item.onClick
+                ? () => item.onClick()
                 : () => navigate(item.route)
             }
           >
@@ -86,6 +88,8 @@ export const DefaultList: React.FC<DefaultListProps> = ({ content }) => {
                                 whichSubitemIsOpen,
                                 setWhichSubitemIsOpen
                               )
+                          : subitem.onClick
+                          ? () => subitem.onClick()
                           : () => navigate(subitem.route)
                       }
                       sx={{ pl: 4 }}
@@ -137,6 +141,8 @@ export const DefaultList: React.FC<DefaultListProps> = ({ content }) => {
                                         whichNestedSubitemIsOpen,
                                         setWhichNestedSubitemIsOpen
                                       )
+                                  : nestedSubitem.onClick
+                                  ? () => nestedSubitem.onClick()
                                   : () => navigate(nestedSubitem.route)
                               }
                               sx={{ pl: 6 }}

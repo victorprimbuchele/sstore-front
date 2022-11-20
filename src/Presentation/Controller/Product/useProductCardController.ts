@@ -1,8 +1,7 @@
 import { useRef, useState } from "react";
-import { ProductModel } from "../../../Data/Products/ProductModel";
 import { verifyInnerTextHeightIsGreaterThanMaxHeight } from "../../../utils/verifyInnerTextHeightIsGreaterThanMaxHeight";
 
-export const useProductCardController = (products: ProductModel[]) => {
+export const useProductCardController = () => {
   const [hasSeeMore, setHasSeeMore] = useState(false);
   const [isShowingMore, setIsShowingMore] = useState([
     {

@@ -2,11 +2,12 @@ export interface DefaultListProps {
   content: typeof defaultListModel;
 }
 
-const defaultListModel = [
+export const defaultListModel = [
   {
     title: "Página inicial",
     route: "/",
     nested: null,
+    onClick: () => {},
   },
   {
     title: "Acesse sua conta",
@@ -24,6 +25,12 @@ const defaultListModel = [
       {
         title: "Starfighter",
         route: "/produtos/?model=starfighter",
+        onClick: () => {},
+      },
+      {
+        title: "Starfighter",
+        route: null,
+        onClick: () => {},
       },
       {
         title: "Séries espaciais",
@@ -33,6 +40,7 @@ const defaultListModel = [
             title: "Cruzador espacial",
             route: "/produtos/?model=cruzador-espacial",
             nested: null,
+            onClick: () => {},
           },
           {
             title: "Transporte espacial",

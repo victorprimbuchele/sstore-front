@@ -16,7 +16,7 @@ export const DefaultLayout: React.FC<DefaultLayoutProps> = ({
       id="sc-container-default-layout"
       key="sc-container-default-layout"
     >
-      <div className="fixed bg-white w-screen sm:w-full drop-shadow-md z-50" id='container-nav-def-lay'>
+      <div className="fixed bg-white w-screen sm:w-full shadow-md z-50" id='container-nav-def-lay'>
         <DefaultNavbar
           menu={
             <SimpleToggleButton

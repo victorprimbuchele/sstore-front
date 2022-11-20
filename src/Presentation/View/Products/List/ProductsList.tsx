@@ -3,6 +3,9 @@ import { Skeleton } from "@mui/material";
 import { ProductCard } from "../../../components/Card/Product/ProductCard";
 import { useStarshipListController } from "../../../Controller/Starship/useStarshipListController";
 import { DefaultLayout } from "../../../components/layouts/Default/DefaultLayout";
+import { ProductToolbar } from "../../../components/Toolbar/Product/ProductToolbar";
+import { FilterProductBackdrop } from "../../../components/Backdrop/Product/Filter/FilterProductBackdrop";
+import { getPossibleProductQueries } from "../../../../Services/UseCases/Product/Query";
 
 export const ProductsList = observer(() => {
   const { products, isLoading, isFetching, page, lastPage, handleSeeMore } =
@@ -10,6 +13,7 @@ export const ProductsList = observer(() => {
 
   return (
     <DefaultLayout>
+      <ProductToolbar />
       <div className="h-full w-full">
         {!isLoading && products.length > 0 ? (
           <div id="sc-container" className="relative">
@@ -70,6 +74,7 @@ export const ProductsList = observer(() => {
           </div>
         )}
       </div>
+      <FilterProductBackdrop />
     </DefaultLayout>
   );
 });

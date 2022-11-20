@@ -6,9 +6,11 @@ export const SimpleToggleButton: React.FC<SimpleToggleButtonProps> = ({
   buttonName,
   className,
   icon,
+  id,
 }) => {
   return (
     <ButtonBase
+      id={id}
       onClick={onClick}
       className={`text-xs sm:text-sm lg:text-base ${className}`}
     >
