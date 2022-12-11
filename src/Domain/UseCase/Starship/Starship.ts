@@ -19,6 +19,22 @@ class Starship {
     this.reset;
   }
 
+  get queryKey() {
+    return this.listStarships.queryKey;
+  }
+
+  get queryValue() {
+    return this.listStarships.queryValue;
+  }
+
+  set setQueryKey(queryKey: string) {
+    this.listStarships.queryKey = queryKey;
+  }
+
+  set setQueryValue(queryValue: string) {
+    this.listStarships.queryValue = queryValue;
+  }
+
   get starships() {
     return starships.starships;
   }

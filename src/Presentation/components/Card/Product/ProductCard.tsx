@@ -13,7 +13,7 @@ export const ProductCard = observer(({ products }: ProductCardProps) => {
     setHasSeeMore,
     textRef,
     hasSeeMore,
-  } = useProductCardController(products);
+  } = useProductCardController();
 
   window.addEventListener("resize", () =>
     handleSeeMore(40, textRef?.current?.id, setHasSeeMore)
@@ -34,9 +34,9 @@ export const ProductCard = observer(({ products }: ProductCardProps) => {
           cardContent={{
             imgHeight: "140",
             description: product.description?.cardDescription,
-            title: product.name,
-            imgAlt: product.name,
-            routeName: stringToKebabCase(product.name),
+            title: product.model,
+            imgAlt: product.model,
+            routeName: stringToKebabCase(product.model),
             imgSrc: product.media ? product.media : NoPhotoPlaceHolder,
           }}
           className={{

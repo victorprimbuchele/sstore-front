@@ -2,7 +2,6 @@ import { makeAutoObservable } from "mobx";
 import { LoadingProps } from "../../Generic/Loading";
 import queries from "../../../../Data/Products/Queries/ProductQueryData";
 import { FiltersData, QueriesData } from "../../../Model/Product/Query";
-import { defaultListModel } from "../../../../Presentation/components/List/Default/DefaultList.types";
 import { toast } from "react-toastify";
 import { getPossibleProductQueries } from "../../../../Services/UseCases/Product/Query";
 
@@ -67,6 +66,8 @@ class ProductsQuery implements LoadingProps {
 
   async setFiltersAndSearches(): Promise<void> {
     try {
+      this.reset();
+
       const queriesData = await this.fetchQueries();
 
       this.setFilter(queriesData.filters);

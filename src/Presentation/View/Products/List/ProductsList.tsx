@@ -5,11 +5,16 @@ import { useStarshipListController } from "../../../Controller/Starship/useStars
 import { DefaultLayout } from "../../../components/layouts/Default/DefaultLayout";
 import { ProductToolbar } from "../../../components/Toolbar/Product/ProductToolbar";
 import { FilterProductBackdrop } from "../../../components/Backdrop/Product/Filter/FilterProductBackdrop";
-import { getPossibleProductQueries } from "../../../../Services/UseCases/Product/Query";
 
 export const ProductsList = observer(() => {
-  const { products, isLoading, isFetching, page, lastPage, handleSeeMore } =
-    useStarshipListController();
+  const {
+    products,
+    isLoading,
+    isFetching,
+    page,
+    lastPage,
+    handleSeeMore,
+  } = useStarshipListController();
 
   return (
     <DefaultLayout>

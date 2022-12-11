@@ -9,11 +9,10 @@ export const FilterProductInput: React.FC = () => {
       >
         <Search sx={{ fontSize: 15 }} className="w-2/12" />
         <InputBase
-          className="bg-gray-100 ml-2 !text-xs !font-body w-10/12"
+          className="bg-gray-100 ml-2 !text-xs !md:text-sm !lg:text-base !font-body w-10/12"
           autoFocus
           placeholder="Pesquisar filtros e marcas"
         />
-      
     </div>
   );
 };

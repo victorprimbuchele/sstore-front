@@ -11,6 +11,8 @@ export class StarshipList implements PaginationProps, LoadingProps {
   perPage: number = 0;
   dataLengthThisPage: number = 0;
   isLoading: boolean = false;
+  queryKey: string = '';
+  queryValue: string = '';
 
   constructor() {
     makeAutoObservable(this);
@@ -25,6 +27,10 @@ export class StarshipList implements PaginationProps, LoadingProps {
     this.isLoading;
     this.setIsLoading;
     this.resetCurrentPage;
+    this.queryKey;
+    this.setQueryKey;
+    this.queryValue;
+    this.setQueryValue;
   }
 
   setCurrentPage(currentPage: number) {
@@ -47,11 +53,23 @@ export class StarshipList implements PaginationProps, LoadingProps {
     this.isLoading = isLoading;
   }
 
+  set setQueryKey(key: string) {
+    this.queryKey = key;
+  }
+
+  set setQueryValue(queryValue: string) {
+    this.queryValue = queryValue;
+  }
+
   async setProductData(starships: StarshipProps) {
     try {
       this.setIsLoading = true;
 
-      const starshipsList = await listProducts(this.currentPage);
+      const starshipsList = await listProducts(
+        this.currentPage,
+        this.queryKey,
+        this.queryValue
+      );
 
       starships.setStarships(starshipsList.starships);
 

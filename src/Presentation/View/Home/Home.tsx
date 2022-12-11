@@ -14,7 +14,7 @@ export const Home: React.FC = () => {
     <DefaultLayout>
       <div
         id="sc-container-slider-carousel "
-        className="w-screen sm:w-full sm:h-60 md:h-96 lg:h-120 2xl:h-160  overflow-hidden md:px-6 lg:px-10 xl:px-14 2xl:px-20"
+        className="w-screen sm:w-full sm:h-60 md:h-96 2xl:h-120  overflow-hidden md:px-6 lg:px-10 xl:px-14 2xl:px-20"
       >
         {slideImages.map((slideImage, idx) => (
           <img

@@ -9,6 +9,7 @@ export const useProductCardController = () => {
       isShowingMore: false,
     },
   ]);
+
   const textRef = useRef<HTMLParagraphElement>(null);
 
   const handleSeeMore = (

@@ -76,6 +76,8 @@ class ProductQuery implements ProductQueryModel {
 
   resetQueries() {
     this.queries = { content: [] };
+    this.filters = [];
+    this.searches = [];
   }
 }
 
