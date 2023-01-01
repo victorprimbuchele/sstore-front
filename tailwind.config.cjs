@@ -6,6 +6,8 @@ module.exports = {
       colors: {
         "extra-dark-blue": "#051346",
         "dark-blue-sky": "#0F427C",
+        "pastel-blue": "#5983B2",
+        "dark-pastel-blue" : "#4A6F98"
       },
       spacing: {
         "200": "50rem",

@@ -11,7 +11,7 @@ export const useDefaultLayoutController = () => {
     },
     {
       title: "Acesse sua conta",
-      route: "/login",
+      route: "/usuario/login",
       nested: null,
     },
     {
