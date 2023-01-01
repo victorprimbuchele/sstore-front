@@ -6,7 +6,6 @@ import { ProductModel } from "../../../Data/Products/ProductModel";
 import { starshipBinder } from "./dataBinding";
 import { useLocation } from "react-router-dom";
 import { getQueryKeysAndValues } from "../../../utils/getQueryKeysAndValues";
-import { toJS } from "mobx";
 
 export const useStarshipListController = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -27,7 +26,6 @@ export const useStarshipListController = () => {
   }, []);
 
   useEffect(() => {
-    console.log({ location });
     handlefetchStarships().then(() => {
       productViewModel.resetProductData();
 
@@ -66,8 +64,6 @@ export const useStarshipListController = () => {
   ) {
     setIsLoading(true);
 
-    console.log({ starships: toJS(starships) });
-
     if (starships) {
       for (let i = 0; i < starships.length; i++) {
         const binded = starshipBinder(starships[i]);
@@ -88,11 +84,6 @@ export const useStarshipListController = () => {
   const handlefetchStarships = async () => {
     await starshipViewModel.fetchStarships();
   };
-
-  console.log({
-    products: toJS(productViewModel.products),
-    starships: toJS(starshipViewModel.starships),
-  });
 
   return {
     products: productViewModel.products,

@@ -11,6 +11,6 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
     <BrowserRouter>
       <Router />
     </BrowserRouter>
-    <ToastContainer />
+    <ToastContainer className="leading-snug"/>
   </React.StrictMode>
 );
