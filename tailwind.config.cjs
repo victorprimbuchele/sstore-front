@@ -13,7 +13,21 @@ module.exports = {
         "200": "50rem",
         "160": "45rem",
         "120": "40rem",
-        "100": "30rem"
+        "100": "28rem"
+      },
+      padding: {
+        "18": "4.5rem"
+      },
+      borderWidth: {
+        "1": "1px"
+      },
+      height: {
+        "22": "5.5rem",
+        "84": "21rem",
+        "88": "22rem",
+        "92": "23rem",
+        "98": "26rem",
+        "110": "35rem",
       }
     },
     fontFamily: {
@@ -22,7 +36,11 @@ module.exports = {
       mono: ["ui-monospace", "SFMono-Regular"],
       brand: ["Cinzel"],
       body: ["Montserrat"],
+      inherit: "inherit"
     },
+    fontSize: {
+      inherit: "inherit"
+    }
   },
   plugins: [],
 };

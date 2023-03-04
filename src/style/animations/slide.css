@@ -1,0 +1,13 @@
+.slide { 
+    animation: slide 300ms linear forwards;
+}
+
+@keyframes slide {
+    from {
+        transform: translateX(-200px);
+    }
+
+    to {
+        transform: translateX(0px);
+    }
+}

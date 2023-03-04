@@ -31,7 +31,7 @@ export const DefaultLayout: React.FC<DefaultLayoutProps> = ({
           list={<DefaultList content={content} />}
         />
       </div>
-      <div className='pt-12 sm:pt-14'>{children}</div>
+      <div className='pt-12'>{children}</div>
     </div>
   );
 };

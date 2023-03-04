@@ -1,10 +1,13 @@
 import { ChevronLeft } from "@mui/icons-material";
+import { useNavigate } from "react-router-dom";
 import { UserContainer } from "../../components/layouts/Container/User/UserContainer";
 import { useUserController } from "../../Controller/User/useUserController";
 import { RegisterForm } from "./Form/RegisterForm";
 
 export const Register: React.FC = () => {
-  const { isLoading, handleRegisterForm, navigate } = useUserController();
+  const navigate = useNavigate();
+
+  const { isLoading, handleRegisterForm } = useUserController(navigate);
 
   return (
     <UserContainer>
