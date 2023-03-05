@@ -2,12 +2,11 @@ import { CreateRequestData } from "../../../Domain/Model/User/Create";
 import userData from "../../../Data/User/UserData";
 import userDomain from "../../../Domain/UseCase/User/User";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { NavigateFunction } from "react-router-dom";
 import { LoginRequestData } from "../../../Domain/Model/User/Login";
+import { UpdateUserRequestData } from "../../../Domain/Model/User/Update";
 
-export const useUserController = () => {
-  const navigate = useNavigate();
-
+export const useUserController = (navigate?: NavigateFunction) => {
   const [isLoading, setIsLoading] = useState(false);
 
   const handleSubmitRegisterForm = async (data: CreateRequestData) => {
@@ -25,7 +24,7 @@ export const useUserController = () => {
 
       await userDomain.userData.setUserData(userData);
 
-      navigate("/usuario/login");
+      if (navigate) navigate("/usuario/login");
 
       setIsLoading(false);
     } catch (error) {
@@ -42,6 +41,34 @@ export const useUserController = () => {
 
       await userDomain.userData.setUserData(userData);
 
+      if (navigate) navigate("/usuario/minha-conta");
+
+      setIsLoading(false);
+    } catch (error) {
+      console.error(error);
+
+      setIsLoading(false);
+    }
+  };
+
+  const handleSubmitUpdateUserForm = async (data: UpdateUserRequestData) => {
+    setIsLoading(true);
+
+    try {
+      await userDomain.update.updateUser(data, userData);    
+      
+      setIsLoading(false);
+    } catch (error) {
+      console.error(error);
+
+      setIsLoading(false);
+    }
+  }
+
+  const getUserData = async () => {
+    try {
+      await userDomain.userData.setUserData(userData);
+
       setIsLoading(false);
     } catch (error) {
       console.error(error);
@@ -54,6 +81,8 @@ export const useUserController = () => {
     isLoading: isLoading,
     handleRegisterForm: handleSubmitRegisterForm,
     handleLoginForm: handleSubmitLoginForm,
-    navigate,
+    handleUpdateForm: handleSubmitUpdateUserForm,
+    getUserData,
+    userData: userData.user
   };
 };

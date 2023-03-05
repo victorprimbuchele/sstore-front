@@ -32,7 +32,7 @@ export const LoginForm: React.FC<LoginFormProps> = ({
   return (
     <form
       onSubmit={handleSubmit((data) => handleLoginForm(data))}
-      className="w-full flex flex-col justify-center items-center w-10/12 sm:w-9/12 md:w-7/12 lg:w-5/12 2xl:w-4/12"
+      className="w-full flex flex-col justify-center items-center w-full sm:w-9/12 md:w-7/12 lg:w-5/12 2xl:w-4/12"
     >
       <Controller
         name="email"

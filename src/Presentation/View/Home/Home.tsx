@@ -13,8 +13,8 @@ export const Home: React.FC = () => {
   return (
     <DefaultLayout>
       <div
-        id="sc-container-slider-carousel "
-        className="w-screen sm:w-full sm:h-60 md:h-96 2xl:h-120  overflow-hidden md:px-6 lg:px-10 xl:px-14 2xl:px-20"
+        id="sc-container-slider-carousel"
+        className="sm:w-full sm:h-60 md:h-84 lg:h-96 xl:h-100 2xl:h-110 md:px-6 lg:px-10 xl:px-14 2xl:px-20 overflow-hidden w-screen"
       >
         {slideImages.map((slideImage, idx) => (
           <img
@@ -39,7 +39,7 @@ export const Home: React.FC = () => {
         />
       </div>
       <div className="flex justify-center w-full">
-        <div className=" sm:mb-2 max-w-xs sm:max-w-full sm:px-6 lg:px-10 xl:px-14 2xl:px-20">
+        <div className="sm:mb-2 max-w-full sm:px-6 lg:px-10 xl:px-14 2xl:px-20">
           <Box
             className="bg-gradient-to-r from-extra-dark-blue to-dark-blue-sky h-10 flex content-center items-center justify-center text-sm mt-10 mb-3"
             id="sc-container-card-carousel"

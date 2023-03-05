@@ -1,10 +1,21 @@
+import { observer } from "mobx-react";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { UserContainer } from "../../components/layouts/Container/User/UserContainer";
 import { BackToHomeLink } from "../../components/Link/BackToHome/BackToHomeLink";
 import { useUserController } from "../../Controller/User/useUserController";
 import { LoginForm } from "./Form/LoginForm";
 
-export const Login: React.FC = () => {
-  const { isLoading, handleLoginForm, navigate } = useUserController();
+export const Login: React.FC = observer(() => {
+  const navigate = useNavigate();
+
+  const { isLoading, handleLoginForm, userData } = useUserController(navigate);
+
+  useEffect(() => {
+    if (userData.email) {
+      navigate('/usuario/minha-conta')
+    }
+  }, [userData.email]);
 
   return (
     <UserContainer>
@@ -42,4 +53,4 @@ export const Login: React.FC = () => {
       </div>
     </UserContainer>
   );
-};
+});
