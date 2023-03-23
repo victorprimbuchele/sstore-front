@@ -1,17 +1,17 @@
 import { AxiosResponse } from "axios";
-import { UpdateUserRequestData } from "../../../Domain/Model/User/Update";
+import { ChangePasswordRequest } from "../../../Domain/Model/User/ChangePassword";
 import { UserDataResponseData } from "../../../Domain/Model/User/UserData";
 import { SpacecraftstoreAPI } from "../../../Infra/SpacecraftStore/SpacecraftstoreAPI";
 
-export function userUpdate(
-  updateData: UpdateUserRequestData,
+export function changePassword(
+  passwordData: ChangePasswordRequest,
   userId: number
 ): Promise<UserDataResponseData> {
   return new Promise(async (resolve, reject) => {
     try {
       const { data } = await SpacecraftstoreAPI.put<AxiosResponse<UserDataResponseData>>(
-        `/user/${userId}`,
-        updateData
+        `/user/password/${userId}`,
+        passwordData
       );
 
       return resolve({

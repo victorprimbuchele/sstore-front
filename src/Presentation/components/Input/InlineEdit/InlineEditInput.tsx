@@ -1,58 +1,39 @@
 import { BorderColor, Check } from "@mui/icons-material";
-import { Input } from "@mui/material";
-import { useState } from "react";
+import { EditStateType } from "../../../View/User/Account/Form/PersonalData/PersonalDataForm";
 
 export interface InlineEditInputProps {
-  data: string;
-  errorMessage?: any;
-  hasError: boolean;
-  maxLength: number;
   className: string;
+  children: React.ReactNode;
+  editState: EditStateType;
+  hasLabel?: boolean;
+  setEditState: (value: EditStateType) => void;
+  value: string;
+  placeholder?: string;
 }
 
-
-
 export const InlineEditInput: React.FC<InlineEditInputProps> = ({
-  data,
-  errorMessage,
-  hasError,
-  maxLength,
   className,
-  ...rest
+  children,
+  editState,
+  setEditState,
+  value,
+  hasLabel = true,
+  placeholder = 'Insira seus dados aqui'
 }: InlineEditInputProps) => {
-  const [editState, setEditState] = useState("done");
-
   return (
     <div className={className}>
-      {editState !== "editing" ? (
+      {editState !== "editing" && hasLabel ? (
         <p className="text-ellipsis overflow-hidden whitespace-nowrap">
-          {data}
+          {value ? value : placeholder}
         </p>
       ) : (
-        <Input
-          className="!font-inherit !text-inherit"
-          disabled={editState !== "editing"}
-          id="sc-inline-edit-input"
-          aria-describedby="standard-weight-helper-text"
-          inputProps={{
-            "aria-label": "weight",
-            maxLength: maxLength,
-          }}
-          value={data}
-          {...rest}
-          error={hasError}
-        />
+        <>{children}</>
       )}
       <button
         className="!font-inherit !text-inherit"
+        type={editState === "done" ? "submit" : "button"}
         onClick={() => {
-          setEditState((prevState) => {
-            if (prevState === "editing") {
-              return "done";
-            } else {
-              return "editing";
-            }
-          });
+          setEditState(editState === "done" ? "editing" : "done");
         }}
       >
         {editState === "editing" ? (
@@ -64,3 +45,6 @@ export const InlineEditInput: React.FC<InlineEditInputProps> = ({
     </div>
   );
 };
+
+
+ 

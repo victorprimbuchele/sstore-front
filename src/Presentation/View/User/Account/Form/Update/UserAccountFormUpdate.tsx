@@ -1,6 +1,6 @@
 import { UpdateUserRequestData } from "../../../../../../Domain/Model/User/Update";
 import { Controller, useForm } from "react-hook-form";
-import { UserButton } from "../../../../../components/Button/User/UserButton";
+import { PrimaryButton } from "../../../../../components/Button/Primary/PrimaryButton";
 import { UserInput } from "../../../../../components/Input/User/UserInput";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
@@ -10,7 +10,7 @@ import InputMask from "react-input-mask";
 import { TextField } from "@mui/material";
 import { cpf, cnpj } from "cpf-cnpj-validator";
 
-type UserAccountFormUpdateProps = {
+export type UserAccountFormUpdateProps = {
   handleUpdateForm: (data: UpdateUserRequestData) => Promise<void>;
 };
 
@@ -31,7 +31,6 @@ export const UserAccountFormUpdate: React.FC<UserAccountFormUpdateProps> = ({
         test: (parametro) => {
           if (parametro) {
             if (isCPF) {
-              console.log(cpf.isValid(parametro));
               return cpf.isValid(parametro);
             }
             return cnpj.isValid(parametro);
@@ -145,7 +144,7 @@ export const UserAccountFormUpdate: React.FC<UserAccountFormUpdateProps> = ({
         )}
       />
       <div className="pt-8 w-full">
-        <UserButton buttonName="Salvar" />
+        <PrimaryButton buttonName="Salvar" />
       </div>
     </form>
   );

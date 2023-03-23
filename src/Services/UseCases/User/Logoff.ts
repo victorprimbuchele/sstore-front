@@ -1,19 +1,19 @@
 import { UserDataResponseData } from "../../../Domain/Model/User/UserData";
 import { SpacecraftstoreAPI } from "../../../Infra/SpacecraftStore/SpacecraftstoreAPI";
 
-export function userGetData(): Promise<UserDataResponseData> {
+export function logoff(): Promise<UserDataResponseData> {
   return new Promise(async (resolve, reject) => {
     try {
-      const { data } = await SpacecraftstoreAPI.get<UserDataResponseData>(
-        "/user"
+      await SpacecraftstoreAPI.get<UserDataResponseData>(
+        "/logoff"
       );
 
       return resolve({
-        id: data.id,
-        name: data.name,
-        email: data.email,
-        phone: data.phone,
-        cpf_cnpj: data.cpf_cnpj,
+        id: 0,
+        name: '',
+        email: '',
+        phone: '',
+        cpf_cnpj: '',
       });
     } catch (error) {
       console.error(error);

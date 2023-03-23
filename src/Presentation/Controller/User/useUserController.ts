@@ -5,6 +5,9 @@ import { useState } from "react";
 import { NavigateFunction } from "react-router-dom";
 import { LoginRequestData } from "../../../Domain/Model/User/Login";
 import { UpdateUserRequestData } from "../../../Domain/Model/User/Update";
+import { toast } from "react-toastify";
+import { ChangePasswordRequest } from "../../../Domain/Model/User/ChangePassword";
+import { ChangePasswordParamDataType } from "../../../Domain/UseCase/User/ChangePassword";
 
 export const useUserController = (navigate?: NavigateFunction) => {
   const [isLoading, setIsLoading] = useState(false);
@@ -20,7 +23,7 @@ export const useUserController = (navigate?: NavigateFunction) => {
         password: data.password,
       };
 
-      await userDomain.login.login(loginData, userData);
+      await userDomain.login.login(loginData);
 
       await userDomain.userData.setUserData(userData);
 
@@ -37,7 +40,7 @@ export const useUserController = (navigate?: NavigateFunction) => {
   const handleSubmitLoginForm = async (data: LoginRequestData) => {
     setIsLoading(true);
     try {
-      await userDomain.login.login(data, userData);
+      await userDomain.login.login(data);
 
       await userDomain.userData.setUserData(userData);
 
@@ -52,21 +55,21 @@ export const useUserController = (navigate?: NavigateFunction) => {
   };
 
   const handleSubmitUpdateUserForm = async (data: UpdateUserRequestData) => {
-    setIsLoading(true);
-
     try {
-      await userDomain.update.updateUser(data, userData);    
-      
+      await userDomain.update.updateUser(data, userData);
+
       setIsLoading(false);
     } catch (error) {
       console.error(error);
 
       setIsLoading(false);
     }
-  }
+  };
 
   const getUserData = async () => {
     try {
+      setIsLoading(true);
+
       await userDomain.userData.setUserData(userData);
 
       setIsLoading(false);
@@ -77,12 +80,70 @@ export const useUserController = (navigate?: NavigateFunction) => {
     }
   };
 
+  const logoutUser = async () => {
+    try {
+      setIsLoading(true);
+
+      await userDomain.logoff.logoff(userData);
+
+      localStorage.clear();
+
+      setIsLoading(false);
+    } catch (error) {
+      console.error(error);
+
+      setIsLoading(false);
+    }
+  };
+
+  const deleteAccount = async () => {
+    try {
+      setIsLoading(true);
+
+      await userDomain.delete.deleteUser();
+
+      localStorage.clear();
+
+      if(navigate) navigate('/usuario/login');
+
+      toast.success('Usuário excluído com sucesso.')
+
+      setIsLoading(false);
+    } catch (error) {
+      console.error(error);
+
+      setIsLoading(false);
+    }
+  }
+
+  const changeUserPassword = async (data: ChangePasswordParamDataType) => {
+    try {
+      await userDomain.changePassword.changePassword(data, userData);
+
+      localStorage.clear();
+
+      if(navigate) navigate('/usuario/login');
+
+      toast.success('Senha alterada com sucesso. Faça login novamente.')
+
+      setIsLoading(false);
+    } catch (error) {
+      console.error(error);
+
+      setIsLoading(false);
+    }
+  }
+
   return {
-    isLoading: isLoading,
+    isLoading,
+    setIsLoading,
     handleRegisterForm: handleSubmitRegisterForm,
     handleLoginForm: handleSubmitLoginForm,
     handleUpdateForm: handleSubmitUpdateUserForm,
     getUserData,
-    userData: userData.user
+    logoutUser,
+    userData: userData.user,
+    deleteAccount,
+    changeUserPassword
   };
 };

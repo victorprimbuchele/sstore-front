@@ -3,7 +3,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
 import { AccountCircle, Lock } from "@mui/icons-material";
 import { UserInput } from "../../../components/Input/User/UserInput";
-import { UserButton } from "../../../components/Button/User/UserButton";
+import { PrimaryButton } from "../../../components/Button/Primary/PrimaryButton";
 
 type LoginFormProps = {
   handleLoginForm: (data: any) => Promise<void>;
@@ -18,7 +18,6 @@ export const LoginForm: React.FC<LoginFormProps> = ({
       .min(10, "Deve ser um e-mail válido"),
     password: Yup.string()
       .required("Este campo é obrigatório.")
-      .min(9, "A senha deverá ter no mínimo 9 caracteres"),
   });
 
   const formOptions = { resolver: yupResolver(formSchema) };
@@ -79,7 +78,7 @@ export const LoginForm: React.FC<LoginFormProps> = ({
         )}
       />
       <div className="pt-8 w-full">
-        <UserButton buttonName="Login" />
+        <PrimaryButton buttonName="Login" />
       </div>
     </form>
   );

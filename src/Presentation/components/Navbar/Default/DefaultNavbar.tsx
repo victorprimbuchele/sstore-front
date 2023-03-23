@@ -5,7 +5,7 @@ export const DefaultNavbar: React.FC<DefaultNavbarProps> = ({
   menu,
   children,
 }) => (
-  <div className="h-12 sm:h-14 border-b-1 border-zinc-200">
+  <div className="h-12 sm:h-14 border-b-1 border-zinc-200" id="sc-container-default-nav">
     <div
       className="h-12 sm:h-14 flex flex-row justify-content-center items-center content-center px-5 "
       id="sc-nav-default-container"

@@ -1,10 +1,10 @@
-interface UserButtonProps {
+interface PrimaryButtonProps {
   buttonName: string;
 }
 
-export const UserButton: React.FC<UserButtonProps> = ({
+export const PrimaryButton: React.FC<PrimaryButtonProps> = ({
   buttonName,
-}: UserButtonProps) => {
+}: PrimaryButtonProps) => {
   return (
     <button
       type="submit"
