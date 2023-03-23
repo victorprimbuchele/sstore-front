@@ -1,20 +1,19 @@
-import { Modal } from "@mui/material";
-import { useEffect, useState } from "react";
 import { UserAccountFormUpdate } from "./Form/Update/UserAccountFormUpdate";
 import { UserContainer } from "../../../components/layouts/Container/User/UserContainer";
 import { useUserController } from "../../../Controller/User/useUserController";
-import { NeumorphicList } from "../../../components/List/Neumorphic/NeumorphicList";
 import { observer } from "mobx-react";
-import { NeumorphicListMenu } from "../../../components/List/Neumorphic/Menu/NeumorphicListMenu";
-import { NeumorphicListMenuContent } from "../../../components/List/Neumorphic/Menu/Content/NeumorphicListMenuContent";
 import { DefaultNavbar } from "../../../components/Navbar/Default/DefaultNavbar";
+import { UserAccountForm } from "./Form/UserAccountForm";
+import { useUserAccountController } from "../../../Controller/User/useUserAccountController";
+import {
+  userAccountRenderData,
+  UserAccountRenderDataParams,
+} from "./RenderData/userAccountRenderData";
+import { UserAccountUpdateModal } from "./Modal/Update/UserAccountUpdateModal";
+import { ButtonLogoff } from "../Button/Logoff/ButtonLogoff";
 import { PersonalDataForm } from "./Form/PersonalData/PersonalDataForm";
-
-type UserAccountNeumorphicListState = {
-  personalData: boolean;
-  address: boolean;
-  order: boolean;
-};
+import { PersonalDataChangePasswordForm } from "./Form/PersonalData/ChangePassword/PersonalDataChangePasswordForm";
+import { useNavigate } from "react-router-dom";
 
 export type ItemTypesHandleOpenNeumorphicList =
   | "personalData"
@@ -22,13 +21,16 @@ export type ItemTypesHandleOpenNeumorphicList =
   | "order";
 
 export const UserAccount: React.FC = observer(() => {
-  const { userData, getUserData, handleUpdateForm, isLoading } =
-    useUserController();
+  const navigate = useNavigate();
 
-  const [open, setOpen] = useState<UserAccountNeumorphicListState>({
-    personalData: false,
-    address: false,
-    order: false,
+  const { userData, getUserData, handleUpdateForm, isLoading, setIsLoading, changeUserPassword } =
+    useUserController(navigate);
+
+  const { rendering, setRendering, open, setOpen } = useUserAccountController({
+    isLoading,
+    setIsLoading,
+    userData,
+    getUserData,
   });
 
   const handleClick = (item: ItemTypesHandleOpenNeumorphicList) => {
@@ -37,84 +39,48 @@ export const UserAccount: React.FC = observer(() => {
     });
   };
 
-  const [isOpenModal, setIsOpenModal] = useState(
-    userData.name === "" && !isLoading
-  );
-
-  useEffect(() => {
-    async () => await getUserData();
-  }, []);
+  const userAccountRenderDataParams: UserAccountRenderDataParams = {
+    UserAccountForm: () => (
+      <UserAccountForm
+        handleClick={handleClick}
+        open={open}
+        PersonalDataForm={() => (
+          <PersonalDataForm
+            handleUpdateForm={handleUpdateForm}
+            user={userData}
+            ChangePasswordForm={() => <PersonalDataChangePasswordForm handleUpdateForm={changeUserPassword}/>}
+          />
+        )}
+      />
+    ),
+    UserAccountUpdateModal: () => (
+      <UserAccountUpdateModal
+        UserAccountFormUpdate={() => (
+          <UserAccountFormUpdate handleUpdateForm={handleUpdateForm} />
+        )}
+        rendering={rendering}
+        setRendering={setRendering}
+      />
+    ),
+    userName: userData.name,
+  };
 
   return (
-    <UserContainer>
+    <UserContainer className="bg-gray-50">
       <div className="absolute top-0 left-0 w-full">
-        <DefaultNavbar />
+        <DefaultNavbar
+          menu={
+            <ButtonLogoff
+              style={
+                userData.name === ""
+                  ? "hidden"
+                  : "font-body font-light text-sm sm:text-sm lg:text-base"
+              }
+            />
+          }
+        />
       </div>
-      {userData.name ? (
-        <div className="flex flex-col font-body w-full text-sm h-full mt-6">
-          <p>Olá, {userData.name}.</p>
-          <h1 className="mx-auto pt-11 pb-9 text-lg font-medium">
-            Minha conta
-          </h1>
-          <div className="flex flex-col justify-between h-full px-2">
-            <NeumorphicList
-              blur={20}
-              color="#ffffff"
-              radius={20}
-              size="w-full h-auto md:w-10/12 lg:w-8/12 xl:w-7/12 2xl:w-6/12 mx-auto"
-              type="convex"
-              lightingAngle="top-left"
-            >
-              <NeumorphicListMenu
-                handleClick={() => handleClick("personalData")}
-                open={open.personalData}
-                label="Dados pessoais"
-              >
-                <NeumorphicListMenuContent>
-                  <PersonalDataForm
-                    handleUpdateForm={handleUpdateForm}
-                    user={userData}
-                  />
-                </NeumorphicListMenuContent>
-              </NeumorphicListMenu>
-              <NeumorphicListMenu
-                handleClick={() => handleClick("order")}
-                open={open.order}
-                label="Cartões"
-              >
-                <NeumorphicListMenuContent></NeumorphicListMenuContent>
-              </NeumorphicListMenu>
-              <NeumorphicListMenu
-                handleClick={() => handleClick("address")}
-                open={open.address}
-                label="Endereços"
-              >
-                <NeumorphicListMenuContent></NeumorphicListMenuContent>
-              </NeumorphicListMenu>
-              <NeumorphicListMenu
-                handleClick={() => handleClick("order")}
-                open={open.order}
-                label="Pedidos"
-                isLastMenu={true}
-              >
-                <NeumorphicListMenuContent></NeumorphicListMenuContent>
-              </NeumorphicListMenu>
-            </NeumorphicList>
-            <button className="text-gray-500 h-max w-max self-center border-2 rounded-3xl px-18 py-4 mb-7 hover:bg-red-700 hover:border-red-700 hover:text-white duration-300">
-              excluir conta
-            </button>
-          </div>
-        </div>
-      ) : (
-        <Modal open={isOpenModal} onClose={() => setIsOpenModal(false)}>
-          <div className="bg-white !font-body max-w-sm p-4 mx-auto translate-y-1/3 rounded-md">
-            <h1 className="text-center my-5 font-semibold">
-              Finalize seu cadastro
-            </h1>
-            <UserAccountFormUpdate handleUpdateForm={handleUpdateForm} />
-          </div>
-        </Modal>
-      )}
+      {userAccountRenderData(userAccountRenderDataParams)[rendering]}
     </UserContainer>
   );
 });

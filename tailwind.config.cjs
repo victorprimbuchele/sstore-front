@@ -28,6 +28,9 @@ module.exports = {
         "92": "23rem",
         "98": "26rem",
         "110": "35rem",
+      },
+      fontSize: {
+        inherit: "inherit"
       }
     },
     fontFamily: {
@@ -38,9 +41,7 @@ module.exports = {
       body: ["Montserrat"],
       inherit: "inherit"
     },
-    fontSize: {
-      inherit: "inherit"
-    }
+    
   },
   plugins: [],
 };

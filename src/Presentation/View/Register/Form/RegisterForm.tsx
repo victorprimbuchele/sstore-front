@@ -1,5 +1,5 @@
 import { Controller, useForm } from "react-hook-form";
-import { UserButton } from "../../../components/Button/User/UserButton";
+import { PrimaryButton } from "../../../components/Button/Primary/PrimaryButton";
 import { UserInput } from "../../../components/Input/User/UserInput";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
@@ -85,7 +85,7 @@ export const RegisterForm: React.FC<RegisterFormProps> = ({
         )}
       />
       <div className="pt-8 w-full">
-        <UserButton buttonName="Registrar" />
+        <PrimaryButton buttonName="Registrar" />
       </div>
     </form>
   );

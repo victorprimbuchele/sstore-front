@@ -40,3 +40,23 @@ html {
     transform: rotate(360deg);
   }
 }
+
+/* Hide the default scrollbar */
+#sc-personal-data-form-container::-webkit-scrollbar {
+  width: 0.8rem;
+}
+
+/* Style the scrollbar track */
+#sc-personal-data-form-container::-webkit-scrollbar-track {
+  background-color: #f1f1f1 !important;
+  border-radius: 8px !important;
+  box-shadow: 0px 0px 0px 1px rgba(207, 207, 207, 0.2);
+}
+
+/* Style the scrollbar thumb */
+#sc-personal-data-form-container::-webkit-scrollbar-thumb {
+  background-color: #d4d4d4 !important;
+  border-radius: 8px !important;
+  
+}
+

@@ -15,17 +15,13 @@ SpacecraftstoreAPI.interceptors.request.use(
     const key = localStorage.getItem("c838d0fb656e604ef7e12074b7caa1e3");
 
     if (key) {
-      const token = getTokenFromLocalStorage(key);
-
-      if (token) {
-        return {
-          ...config,
-          headers: {
-            ...config.headers,
-            Authorization: `Bearer ${token}`,
-          },
-        };
-      }
+      return {
+        ...config,
+        headers: {
+          ...config.headers,
+          Authorization: `Bearer ${key}`,
+        },
+      };
     }
 
     return config;

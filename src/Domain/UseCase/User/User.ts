@@ -5,6 +5,8 @@ import { Login } from "./Login";
 import { makeAutoObservable } from "mobx";
 import { LoadingProps } from "../Generic/Loading";
 import { UpdateUser } from "./Update";
+import { Logoff } from "./Logoff";
+import { ChangeUserPassword } from "./ChangePassword";
 
 class User implements LoadingProps {
   private deleteUser = new DeleteUser();
@@ -12,6 +14,8 @@ class User implements LoadingProps {
   private registerUser = new RegisterUser();
   private loginUser = new Login();
   private updateUser = new UpdateUser();
+  private logoffUser = new Logoff();
+  private changeUserPassword = new ChangeUserPassword();
   isLoading: boolean = false;
 
   constructor() {
@@ -41,6 +45,14 @@ class User implements LoadingProps {
 
   get update() {
     return this.updateUser;
+  }
+
+  get logoff() {
+    return this.logoffUser;
+  }
+
+  get changePassword() {
+    return this.changeUserPassword;
   }
 }
 
