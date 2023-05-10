@@ -1,13 +1,13 @@
 import { ChevronLeft } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
 import { UserContainer } from "../../components/layouts/Container/User/UserContainer";
+import { RecoveryPasswordForm } from "./Form/RecoveryPasswordForm";
 import { useUserController } from "../../Controller/User/useUserController";
-import { RegisterForm } from "./Form/RegisterForm";
 
-export const Register: React.FC = () => {
+export const RecoveryPassword: React.FC = () => {
   const navigate = useNavigate();
 
-  const { isLoading, handleRegisterForm } = useUserController(navigate);
+  const { handleRecoveryPasswordToGetCodeForm } = useUserController(navigate);
 
   return (
     <UserContainer>
@@ -18,15 +18,17 @@ export const Register: React.FC = () => {
       <div className="flex flex-col justify-center h-full">
         <div
           id="sc-title-login-container"
-          className="font-body text-3xl font-semibold text-center mt-10 mb-8 xl:mb-12"
+          className="font-body text-xl sm:text-2xl xl:text-3xl font-semibold text-center 2xl:mt-28 mb-12 lg:20 xl:mb-24"
         >
-          <h1>Criar conta</h1>
+          <h1>Recuperar senha</h1>
         </div>
         <div
           id="sc-input-login-container"
-          className="flex flex-col items-center"
+          className="sm:flex sm:flex-col sm:items-center"
         >
-          <RegisterForm handleSubmitForm={handleRegisterForm} />
+          <RecoveryPasswordForm
+            handleRecoveryPasswordForm={handleRecoveryPasswordToGetCodeForm}
+          />
         </div>
       </div>
     </UserContainer>

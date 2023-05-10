@@ -8,7 +8,7 @@ export const UserContainer: React.FC<UserContainerProps> = ({
   className
 }: UserContainerProps) => {
   return (
-    <div id="sc-container-user" className={`p-10 h-screen ${className}`}>
+    <div id="sc-container-user" className={`p-6 sm:p-10 h-screen ${className}`}>
       {children}
     </div>
   );

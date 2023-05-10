@@ -9,16 +9,12 @@ export type UserAccountNeumorphicListState = {
 
 export interface UserAccountControllerParams {
   isLoading: boolean;
-  setIsLoading: React.Dispatch<React.SetStateAction<boolean>>;
   userData: UserModel;
-  getUserData: () => Promise<void>;
 }
 
 export const useUserAccountController = ({
   isLoading,
-  setIsLoading,
   userData,
-  getUserData,
 }: UserAccountControllerParams) => {
   const [open, setOpen] = useState<UserAccountNeumorphicListState>({
     personalData: false,
@@ -33,7 +29,10 @@ export const useUserAccountController = ({
       return "loading";
     }
 
-    if (userData.email === "") {
+    if (
+      userData.email === "" ||
+      localStorage.getItem("c838d0fb656e604ef7e12074b7caa1e3") == null
+    ) {
       return "forbidden";
     }
 

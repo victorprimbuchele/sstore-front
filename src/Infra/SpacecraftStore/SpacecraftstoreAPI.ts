@@ -1,5 +1,4 @@
 import axios from "axios";
-import { getTokenFromLocalStorage } from "../../utils/getTokenFromLocalStorage";
 
 const SpacecraftstoreAPI = axios.create({
   baseURL: import.meta.env.VITE_SPACECRAFT_STORE_API,

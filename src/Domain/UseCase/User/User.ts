@@ -7,6 +7,8 @@ import { LoadingProps } from "../Generic/Loading";
 import { UpdateUser } from "./Update";
 import { Logoff } from "./Logoff";
 import { ChangeUserPassword } from "./ChangePassword";
+import { ActivateAccount } from "./Activate";
+import { RecoverUserPassword } from "./RecoverPassword";
 
 class User implements LoadingProps {
   private deleteUser = new DeleteUser();
@@ -16,6 +18,8 @@ class User implements LoadingProps {
   private updateUser = new UpdateUser();
   private logoffUser = new Logoff();
   private changeUserPassword = new ChangeUserPassword();
+  private activateUserAccount = new ActivateAccount();
+  private recoverUserPassword = new RecoverUserPassword();
   isLoading: boolean = false;
 
   constructor() {
@@ -53,6 +57,14 @@ class User implements LoadingProps {
 
   get changePassword() {
     return this.changeUserPassword;
+  }
+
+  get activateAccount() {
+    return this.activateUserAccount;
+  }
+
+  get recoverPassword() {
+    return this.recoverUserPassword;
   }
 }
 

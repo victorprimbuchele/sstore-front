@@ -23,14 +23,12 @@ export type ItemTypesHandleOpenNeumorphicList =
 export const UserAccount: React.FC = observer(() => {
   const navigate = useNavigate();
 
-  const { userData, getUserData, handleUpdateForm, isLoading, setIsLoading, changeUserPassword } =
+  const { userData, handleUpdateForm, isLoading, changeUserPassword } =
     useUserController(navigate);
 
   const { rendering, setRendering, open, setOpen } = useUserAccountController({
     isLoading,
-    setIsLoading,
     userData,
-    getUserData,
   });
 
   const handleClick = (item: ItemTypesHandleOpenNeumorphicList) => {

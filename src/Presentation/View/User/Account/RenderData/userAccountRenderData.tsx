@@ -1,8 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import {
-  useUserController,
-} from "../../../../Controller/User/useUserController";
+import { useUserController } from "../../../../Controller/User/useUserController";
 import { Unauthenticated } from "../../../Unauthenticated/Unauthenticated";
 import { UserAccountFormProps } from "../Form/UserAccountForm";
 import { UserAccountLoading } from "../Loading/UserAccountLoading";
@@ -53,7 +51,7 @@ export const userAccountRenderData: UserAccountRenderDataType = ({
         </div>
       </div>
     ),
-    modal: { UserAccountUpdateModal },
+    modal: <> {UserAccountUpdateModal()} </>,
     forbidden: <Unauthenticated />,
     loading: <UserAccountLoading />,
   };
